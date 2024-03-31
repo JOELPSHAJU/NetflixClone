@@ -28,11 +28,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bordered_text: ^2.0.0
   cupertino_icons: ^1.0.2
-  google_fonts: ^6.1.0
   flutter:
     sdk: flutter
-
+  google_fonts: ^6.1.0
+  video_player: ^2.8.3
 
 dev_dependencies:
   flutter_lints: ^2.0.0
