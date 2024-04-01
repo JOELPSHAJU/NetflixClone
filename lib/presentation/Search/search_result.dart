@@ -37,7 +37,7 @@ class MainCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(7),
           image: const DecorationImage(
               image: NetworkImage(
-                  'https://image.tmdb.org/t/p/original/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg'),
+                  'https://image.tmdb.org/t/p/original/fDx5lbHcmWxEwYjoizsTXW2mVDr.jpg'),
               fit: BoxFit.fitWidth)),
     );
   }

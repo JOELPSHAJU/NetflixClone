@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/presentation/screenMainPage/screen_mainpage.dart';
 
@@ -18,6 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: backgroundColor,
           primarySwatch: Colors.blue,
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
           textTheme: const TextTheme(
               bodyLarge: TextStyle(color: Colors.white),
               bodyMedium: TextStyle(color: Colors.white),

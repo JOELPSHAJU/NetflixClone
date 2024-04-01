@@ -5,7 +5,7 @@ import 'package:netflix/presentation/FastLaughs/screen_fast_laughs.dart';
 import 'package:netflix/presentation/HomePage/screen_home.dart';
 import 'package:netflix/presentation/NewAndHot/screen_new_and_hot.dart';
 import 'package:netflix/presentation/Search/sreen_search.dart';
-import 'package:netflix/presentation/downloads/widgets/screen_downloads.dart';
+import 'package:netflix/presentation/downloads/screen_downloads.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({super.key});

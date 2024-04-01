@@ -9,5 +9,10 @@ const height = SizedBox(
 const height20 = SizedBox(
   height: 20,
 );
-// border radius 
+// border radius
 BorderRadius radius = BorderRadius.circular(10);
+
+//textstyle
+
+TextStyle textstyleHomeTitle =
+    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold);

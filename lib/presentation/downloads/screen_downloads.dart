@@ -10,12 +10,16 @@ class ScreenDownloads extends StatelessWidget {
   final widgetlist = [const SmartWidget(), const Section2(), const Section3()];
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: const PreferredSize(
             preferredSize: Size.fromHeight(50),
-            child: AppBarWidget(
-              title: 'Downloads',
+            child: Padding(
+              padding: EdgeInsets.only(left: 8.0),
+              child: AppBarWidget(
+                title: 'Downloads',
+              ),
             )),
         body: ListView.separated(
             padding: const EdgeInsets.all(10),
@@ -63,6 +67,7 @@ class ImageTIle extends StatelessWidget {
   final String image;
   final Size size;
 
+  // ignore: prefer_typing_uninitialized_variables
   final margin;
 
   @override
@@ -102,7 +107,7 @@ class Section2 extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 16, color: Colors.grey),
         ),
-        Container(
+        SizedBox(
           width: size.width,
           height: size.width,
           child: Stack(
