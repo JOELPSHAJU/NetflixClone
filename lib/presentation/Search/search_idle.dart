@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix/application/models/popular/popular.dart';
 import 'package:netflix/core/colors/constants.dart';
-import 'package:netflix/presentation/Search/widget.dart';
+import 'package:netflix/presentation/search/widget.dart';
 
 class SearchIdle extends StatelessWidget {
-  const SearchIdle({super.key});
-
+  SearchIdle({super.key, required this.popular});
+  List<Popular> popular;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,9 +19,12 @@ class SearchIdle extends StatelessWidget {
         height,
         Expanded(
           child: ListView.separated(
-              itemBuilder: (ctx, index) => const TopSearchItemTile(),
+              shrinkWrap: true,
+              itemBuilder: (ctx, index) => TopSearchItemTile(
+                  url: popular[index].imagePath,
+                  movieName: popular[index].title),
               separatorBuilder: (ctx, index) => height20,
-              itemCount: 10),
+              itemCount: popular.length),
         )
       ],
     );
@@ -28,7 +32,10 @@ class SearchIdle extends StatelessWidget {
 }
 
 class TopSearchItemTile extends StatelessWidget {
-  const TopSearchItemTile({super.key});
+  const TopSearchItemTile(
+      {super.key, required this.movieName, required this.url});
+  final String url;
+  final String movieName;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +46,12 @@ class TopSearchItemTile extends StatelessWidget {
         Container(
           height: 70,
           width: Screensize * .35,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                      'https://image.tmdb.org/t/p/original/JhdlrOKjZyPA6Txg8PgvjqQmIK.jpg'))),
+          decoration: BoxDecoration(
+              image: DecorationImage(image: NetworkImage(imageBase + url))),
         ),
-        const Expanded(
+        Expanded(
             child: SearchPageTitle(
-          title: 'Movie Name',
+          title: movieName,
         )),
         const CircleAvatar(
           backgroundColor: Colors.white,

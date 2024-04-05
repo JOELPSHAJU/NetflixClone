@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:netflix/Widgets/app_bar_widget.dart';
+import 'package:netflix/widgets/app_bar_widget.dart';
+import 'package:netflix/application/controller/top_rated/top_rated.dart';
+import 'package:netflix/application/models/top_rated/top_rated.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/colors/constants.dart';
 
@@ -87,8 +89,25 @@ class ImageTIle extends StatelessWidget {
   }
 }
 
-class Section2 extends StatelessWidget {
+class Section2 extends StatefulWidget {
   const Section2({super.key});
+
+  @override
+  State<Section2> createState() => _Section2State();
+}
+
+class _Section2State extends State<Section2> {
+  List<TopRated> downloadImages = [];
+  Future getAllMovies() async {
+    downloadImages = await getTopRatedMovies();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getAllMovies();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,14 +143,14 @@ class Section2 extends StatelessWidget {
                   angle: 8,
                   margin: const EdgeInsets.only(left: 180, bottom: 38, top: 27),
                   image:
-                      'https://image.tmdb.org/t/p/original/9poaVzGSMMDuSXB1w3kEh1XubKx.jpg'),
+                      'https://p1.img.cctvpic.com/photoworkspace/contentimg/2016/07/15/2016071515452572470.jpg'),
               ImageTIle(
                   size: Size(size.width * .4, size.height * .25),
                   angle: -8,
                   margin:
                       const EdgeInsets.only(right: 180, bottom: 38, top: 27),
                   image:
-                      'https://image.tmdb.org/t/p/original/lFx2i2pg1BoaD7grcpGDyHM1eML.jpg'),
+                      'https://www.vistanaij.com.ng/wp-content/uploads/2021/10/Game-of-thrones.jpg'),
               ImageTIle(
                   size: Size(
                     size.width * .4,
@@ -140,7 +159,7 @@ class Section2 extends StatelessWidget {
                   angle: 0,
                   margin: const EdgeInsets.only(left: 0, top: 27),
                   image:
-                      'https://image.tmdb.org/t/p/original/2NbuLNZabhaNjbaBDklZg98TxmG.jpg')
+                      'https://image.tmdb.org/t/p/original/wYzlzU7XWIaUEqtln9eRakuyW0P.jpg'),
             ],
           ),
         ),

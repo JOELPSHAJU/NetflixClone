@@ -1,13 +1,48 @@
-import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:netflix/application/controller/now_playing/now_playing.dart';
+import 'package:netflix/application/controller/popular/popular.dart';
+import 'package:netflix/application/controller/top_rated/top_rated.dart';
+import 'package:netflix/application/controller/upcoming/upcomings.dart';
+import 'package:netflix/application/models/now_playing/now_playing.dart';
+import 'package:netflix/application/models/popular/popular.dart';
+import 'package:netflix/application/models/top_rated/top_rated.dart';
+import 'package:netflix/application/models/upcoming/upcoming.dart';
 import 'package:netflix/core/colors/constants.dart';
-import 'package:netflix/presentation/HomePage/main_title.dart';
+import 'package:netflix/presentation/homePage/main_title.dart';
+import 'package:netflix/presentation/homePage/widget/custom_card.dart';
+import 'package:netflix/presentation/homePage/widget/main_tile.dart';
+import 'package:netflix/presentation/homePage/widget/number_card.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
 
-class ScreenHome extends StatelessWidget {
+class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
+
+  @override
+  State<ScreenHome> createState() => _ScreenHomeState();
+}
+
+class _ScreenHomeState extends State<ScreenHome> {
+  List<TopRated> topRated = [];
+  List<Popular> popular = [];
+  List<Upcoming> upcoming = [];
+  List<NowPlaying> newplaying = [];
+  Future getAllMovies() async {
+    topRated = await getTopRatedMovies();
+    popular = await getAllPopular();
+    upcoming = await getAllUpcoming();
+    newplaying = await getAllNowPlaying();
+
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getAllMovies();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,121 +62,76 @@ class ScreenHome extends StatelessWidget {
           },
           child: Stack(
             children: [
-              ListView(
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 600,
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    'https://image.tmdb.org/t/p/original/87jZEVp4FW6GwTx56mbbqIQQF75.jpg'),
-                                fit: BoxFit.cover)),
+              ListView(children: [
+                Stack(
+                  children: [
+                    Container(
+                      height: 600,
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://image.tmdb.org/t/p/original/87jZEVp4FW6GwTx56mbbqIQQF75.jpg'),
+                              fit: BoxFit.cover)),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const CustomIconButton(
+                            icon: Icons.add,
+                            label: 'My List',
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.height * .053,
+                            width: MediaQuery.of(context).size.width * .3,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.black,
+                                  size: 25,
+                                ),
+                                Text(
+                                  'Play',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const CustomIconButton(
+                              icon: Icons.info_outline, label: 'Info')
+                        ],
                       ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            const CustomIconButton(
-                              icon: Icons.add,
-                              label: 'My List',
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * .053,
-                              width: MediaQuery.of(context).size.width * .3,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: const Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.black,
-                                    size: 25,
-                                  ),
-                                  Text(
-                                    'Play',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const CustomIconButton(
-                                icon: Icons.info_outline, label: 'Info')
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  height,
-                  const MainTitle(title: 'Released in the past year'),
-                  height,
-                  SizedBox(
-                    width: double.infinity,
-                    height: 220,
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children:
-                            List.generate(30, (index) => const MainCard())),
-                  ),
-                  height,
-                  const MainTitle(title: 'Trending Now'),
-                  height,
-                  SizedBox(
-                    width: double.infinity,
-                    height: 220,
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children:
-                            List.generate(30, (index) => const MainCard())),
-                  ),
-                  height,
-                  const MainTitle(title: 'Top 10 TV Shows In India Today'),
-                  height,
-                  LimitedBox(
-                    maxHeight: 200,
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: List.generate(
-                            10,
-                            (index) => MainCardCustom(
-                                  index: index,
-                                ))),
-                  ),
-                  height,
-                  const MainTitle(title: 'Tense Dramas'),
-                  height,
-                  SizedBox(
-                    width: double.infinity,
-                    height: 220,
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children:
-                            List.generate(30, (index) => const MainCard())),
-                  ),
-                  height,
-                  const MainTitle(title: 'South Indian Cinema'),
-                  height,
-                  SizedBox(
-                    width: double.infinity,
-                    height: 220,
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children:
-                            List.generate(30, (index) => const MainCard())),
-                  ),
-                ],
-              ),
+                    )
+                  ],
+                ),
+                height,
+                MainTitleCard(
+                    titletext: "Released in the past year", movies: topRated),
+                height,
+                const MainTitle(title: 'Top 10 TV Shows In India Today'),
+                height,
+                NumberTitleCard(
+                  upcoming: upcoming,
+                ),
+                height,
+                MainTitleCard(titletext: 'Tense Dramas', movies: topRated),
+                height,
+                MainTitleCard(
+                    titletext: 'South Indian Cinema', movies: popular),
+                height,
+              ]),
               scrollNotifier.value == true
                   ? Container(
                       width: double.infinity,
@@ -168,7 +158,11 @@ class ScreenHome extends StatelessWidget {
                               Container(
                                 width: 40,
                                 height: 30,
-                                color: Colors.blue,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/Images/Screenshot 2024-04-05 140203 (1).png'),
+                                        fit: BoxFit.cover)),
                               ),
                               width,
                             ],
@@ -224,78 +218,6 @@ class CustomIconButton extends StatelessWidget {
           label,
           style: TextStyle(fontSize: textsize),
         )
-      ],
-    );
-  }
-}
-
-class MainCard extends StatelessWidget {
-  const MainCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Container(
-        width: 160,
-        height: 220,
-        decoration: BoxDecoration(
-            borderRadius: radius,
-            image: const DecorationImage(
-                image: NetworkImage(
-                  'https://image.tmdb.org/t/p/original/7neAOlqR56CEcQGkQM4VKsVcSMU.jpg',
-                ),
-                fit: BoxFit.cover)),
-      ),
-    );
-  }
-}
-
-class MainCardCustom extends StatelessWidget {
-  final int index;
-  const MainCardCustom({super.key, required this.index});
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Row(
-          children: [
-            const SizedBox(
-              width: 40,
-              height: 220,
-            ),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 1000),
-              width: 160,
-              height: 220,
-              decoration: BoxDecoration(
-                  borderRadius: radius,
-                  image: const DecorationImage(
-                      image: NetworkImage(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjnkFItuYOJ6q9OKUFrbh-aOIqYOt2cQfXiw&usqp=CAU',
-                      ),
-                      fit: BoxFit.cover)),
-            ),
-          ],
-        ),
-        Positioned(
-            left: 10,
-            bottom: -20,
-            child: BorderedText(
-              strokeWidth: 8,
-              strokeColor: Colors.white,
-              child: Text(
-                '${index + 1}',
-                style: const TextStyle(
-                    fontSize: 100,
-                    color: Colors.black,
-                    decoration: TextDecoration.none,
-                    decorationColor: Colors.white),
-              ),
-            ))
       ],
     );
   }

@@ -22,7 +22,11 @@ class AppBarWidget extends StatelessWidget {
         Container(
           width: 40,
           height: 30,
-          color: Colors.blue,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(
+                      'assets/Images/Screenshot 2024-04-05 140203 (1).png'),
+                  fit: BoxFit.cover)),
         ),
         width,
       ],
