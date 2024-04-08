@@ -4,16 +4,14 @@ import 'package:netflix/application/models/upcoming/upcoming.dart';
 import 'package:netflix/core/colors/constants.dart';
 
 class MainCardCustom extends StatelessWidget {
+  MainCardCustom({Key? key, required this.image, required this.index})
+      : super(key: key);
 
-  MainCardCustom({Key? key, required this.image, required this.index}) : super(key: key);
-
-    final int index;
+  final int index;
   final String image;
 
   @override
   Widget build(BuildContext context) {
-
-
     return Stack(
       children: [
         Row(

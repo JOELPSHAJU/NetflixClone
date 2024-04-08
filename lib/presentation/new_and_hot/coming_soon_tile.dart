@@ -49,22 +49,22 @@ class ComingSoonTile extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        SizedBox(
                           width: size.width * .6,
                           child: Text(
                             topRated.title.toUpperCase(),
                             maxLines: 1,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 overflow: TextOverflow.ellipsis,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 35),
                           ),
                         ),
-                        Spacer(),
-                        Row(
+                        const Spacer(),
+                        const Row(
                           children: [
                             CustomIconButton(
-                              icon: Icons.alarm,
+                              icon: Icons.notifications_none,
                               label: 'Remind Me',
                               iconsize: 20,
                               textsize: 10,
@@ -81,12 +81,12 @@ class ComingSoonTile extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text("Coming on Friday"),
+                    Text("Coming on ${topRated.releaseDate}"),
                     height,
                     Text(
                       topRated.title,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 23),
                     ),
                     Text(topRated.overview),
                     height

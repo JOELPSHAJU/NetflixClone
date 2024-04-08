@@ -120,6 +120,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                 MainTitleCard(
                     titletext: "Released in the past year", movies: topRated),
                 height,
+                MainTitleCard(titletext: "Trending", movies: newplaying),
+                height,
                 const MainTitle(title: 'Top 10 TV Shows In India Today'),
                 height,
                 NumberTitleCard(

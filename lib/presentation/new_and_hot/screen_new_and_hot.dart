@@ -128,8 +128,8 @@ class ComingSoon extends StatelessWidget {
 }
 
 class EveryonesWatching extends StatelessWidget {
-  EveryonesWatching({super.key, required this.everyone});
-  List<Upcoming> everyone;
+  const EveryonesWatching({super.key, required this.everyone});
+  final List<Upcoming> everyone;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

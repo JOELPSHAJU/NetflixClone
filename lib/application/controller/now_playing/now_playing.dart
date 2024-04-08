@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:netflix/application/models/now_playing/now_playing.dart';
 
-
 String getUrl =
     'https://api.themoviedb.org/3/movie/now_playing?api_key=dab291ee706b6e84664394469bd13e5b';
 
@@ -14,3 +13,4 @@ Future<List<NowPlaying>> getAllNowPlaying() async {
   print(_data.nowplayingList[0].overview);
   return _data.nowplayingList;
 }
+

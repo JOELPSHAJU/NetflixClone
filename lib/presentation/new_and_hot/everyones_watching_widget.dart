@@ -5,11 +5,11 @@ import 'package:netflix/core/colors/constants.dart';
 import 'package:netflix/presentation/homePage/screen_home.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
-  EveryonesWatchingWidget({
+  const EveryonesWatchingWidget({
     super.key,
     required this.upcoming,
   });
-  Upcoming upcoming;
+  final Upcoming upcoming;
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +21,19 @@ class EveryonesWatchingWidget extends StatelessWidget {
             width,
             Text(
               upcoming.title,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ],
         ),
         Padding(
-            padding: EdgeInsets.only(left: 8.0, right: 8),
+            padding: const EdgeInsets.only(left: 8.0, right: 8),
             child: Text(upcoming.overview)),
         height50,
         VedioWidget(
           image: imageBase + upcoming.imagePath,
         ),
         height,
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             CustomIconButton(

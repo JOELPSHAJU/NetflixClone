@@ -32,13 +32,15 @@ class SearchIdle extends StatelessWidget {
 }
 
 class TopSearchItemTile extends StatelessWidget {
+    final String url;
+  final String movieName;
+
   const TopSearchItemTile(
       {super.key, required this.movieName, required this.url});
-  final String url;
-  final String movieName;
 
   @override
   Widget build(BuildContext context) {
+ 
     // ignore: non_constant_identifier_names
     final Screensize = MediaQuery.of(context).size.width;
     return Row(
@@ -47,8 +49,10 @@ class TopSearchItemTile extends StatelessWidget {
           height: 70,
           width: Screensize * .35,
           decoration: BoxDecoration(
-              image: DecorationImage(image: NetworkImage(imageBase + url))),
+              image: DecorationImage(
+                  image: NetworkImage(imageBase + url), fit: BoxFit.cover)),
         ),
+        width,
         Expanded(
             child: SearchPageTitle(
           title: movieName,
