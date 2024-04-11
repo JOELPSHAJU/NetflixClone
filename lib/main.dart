@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/presentation/screen_main_page/screen_mainpage.dart';
+import 'package:netflix/presentation/splash_screen/splashscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
               bodyLarge: TextStyle(color: Colors.white),
               bodyMedium: TextStyle(color: Colors.white),
               bodySmall: TextStyle(color: Colors.white))),
-      home: MainPage(),
+      home: const SplashScreen(),
     );
   }
 }

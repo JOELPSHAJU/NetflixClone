@@ -36,7 +36,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.5
   get_it: null
-  google_fonts: ^6.1.0
+  google_fonts:
   http:
   injectable: null
   json_annotation: ^4.8.1

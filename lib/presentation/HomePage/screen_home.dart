@@ -46,152 +46,155 @@ class _ScreenHomeState extends State<ScreenHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ValueListenableBuilder(
-      valueListenable: scrollNotifier,
-      builder: (context, value, child) {
-        return NotificationListener<UserScrollNotification>(
-          onNotification: (notification) {
-            final ScrollDirection direction = notification.direction;
-            if (direction == ScrollDirection.reverse) {
-              scrollNotifier.value = false;
-            } else if (direction == ScrollDirection.forward) {
-              scrollNotifier.value = true;
-            }
-            return true;
-          },
-          child: Stack(
-            children: [
-              ListView(children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: 600,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://image.tmdb.org/t/p/original/87jZEVp4FW6GwTx56mbbqIQQF75.jpg'),
-                              fit: BoxFit.cover)),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const CustomIconButton(
-                            icon: Icons.add,
-                            label: 'My List',
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * .053,
-                            width: MediaQuery.of(context).size.width * .3,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(8)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return SafeArea(
+      child: Scaffold(
+          body: ValueListenableBuilder(
+        valueListenable: scrollNotifier,
+        builder: (context, value, child) {
+          return NotificationListener<UserScrollNotification>(
+            onNotification: (notification) {
+              final ScrollDirection direction = notification.direction;
+              if (direction == ScrollDirection.reverse) {
+                scrollNotifier.value = false;
+              } else if (direction == ScrollDirection.forward) {
+                scrollNotifier.value = true;
+              }
+              return true;
+            },
+            child: Stack(
+              children: [
+                ListView(children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: 600,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    'https://image.tmdb.org/t/p/original/87jZEVp4FW6GwTx56mbbqIQQF75.jpg'),
+                                fit: BoxFit.cover)),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const CustomIconButton(
+                              icon: Icons.add,
+                              label: 'My List',
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * .053,
+                              width: MediaQuery.of(context).size.width * .3,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                  Text(
+                                    'Play',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const CustomIconButton(
+                                icon: Icons.info_outline, label: 'Info')
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  height,
+                  MainTitleCard(
+                      titletext: "Released in the past year", movies: topRated),
+                  height,
+                  MainTitleCard(titletext: "Trending", movies: newplaying),
+                  height,
+                  const MainTitle(title: 'Top 10 TV Shows In India Today'),
+                  height,
+                  NumberTitleCard(
+                    upcoming: upcoming,
+                  ),
+                  height,
+                  MainTitleCard(titletext: 'Tense Dramas', movies: topRated),
+                  height,
+                  MainTitleCard(
+                      titletext: 'South Indian Cinema', movies: popular),
+                  height,
+                ]),
+                scrollNotifier.value == true
+                    ? Container(
+                        width: double.infinity,
+                        height: 80,
+                        color: Colors.black.withOpacity(.4),
+                        child: Column(
+                          children: [
+                            Row(
                               children: [
-                                Icon(
-                                  Icons.play_arrow,
-                                  color: Colors.black,
-                                  size: 25,
+                                Container(
+                                  height: 40,
+                                  width: 60,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/Images/NetflixLogo.png'))),
                                 ),
-                                Text(
-                                  'Play',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                const Spacer(),
+                                const Icon(
+                                  Icons.cast,
+                                  color: Colors.white,
                                 ),
+                                width,
+                                Container(
+                                  width: 40,
+                                  height: 30,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/Images/Screenshot 2024-04-05 140203 (1).png'),
+                                          fit: BoxFit.cover)),
+                                ),
+                                width,
                               ],
                             ),
-                          ),
-                          const CustomIconButton(
-                              icon: Icons.info_outline, label: 'Info')
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                height,
-                MainTitleCard(
-                    titletext: "Released in the past year", movies: topRated),
-                height,
-                MainTitleCard(titletext: "Trending", movies: newplaying),
-                height,
-                const MainTitle(title: 'Top 10 TV Shows In India Today'),
-                height,
-                NumberTitleCard(
-                  upcoming: upcoming,
-                ),
-                height,
-                MainTitleCard(titletext: 'Tense Dramas', movies: topRated),
-                height,
-                MainTitleCard(
-                    titletext: 'South Indian Cinema', movies: popular),
-                height,
-              ]),
-              scrollNotifier.value == true
-                  ? Container(
-                      width: double.infinity,
-                      height: 80,
-                      color: Colors.black.withOpacity(.4),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                height: 40,
-                                width: 60,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/Images/NetflixLogo.png'))),
-                              ),
-                              const Spacer(),
-                              const Icon(
-                                Icons.cast,
-                                color: Colors.white,
-                              ),
-                              width,
-                              Container(
-                                width: 40,
-                                height: 30,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/Images/Screenshot 2024-04-05 140203 (1).png'),
-                                        fit: BoxFit.cover)),
-                              ),
-                              width,
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text('TV Shows', style: textstyleHomeTitle),
-                              Text(
-                                'Movies',
-                                style: textstyleHomeTitle,
-                              ),
-                              Text(
-                                'Categories',
-                                style: textstyleHomeTitle,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  : height
-            ],
-          ),
-        );
-      },
-    ));
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text('TV Shows', style: textstyleHomeTitle),
+                                Text(
+                                  'Movies',
+                                  style: textstyleHomeTitle,
+                                ),
+                                Text(
+                                  'Categories',
+                                  style: textstyleHomeTitle,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    : height
+              ],
+            ),
+          );
+        },
+      )),
+    );
   }
 }
 
