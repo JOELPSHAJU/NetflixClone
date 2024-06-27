@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:netflix/presentation/screen_main_page/screen_mainpage.dart';
 
@@ -28,28 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/Images/NetflixLogo.png',
-                width: size.width * 3,
-                height: size.height * .2,
-              ),
-              Image.asset(
-                'assets/Images/toppng.com-netflix-logo-png-download-1280x544.png',
-                width: size.width * 3,
-                height: size.height * .1,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const Text(
-                '- JOEL P SHAJU -',
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red),
-              )
-            ],
+            children: [Lottie.asset('assets/lottie/netflix.json')],
           ),
         ),
       ),
@@ -57,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> gotoHome() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 5));
     // ignore: use_build_context_synchronously
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (ctx) => MainPage()));

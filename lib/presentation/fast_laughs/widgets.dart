@@ -98,7 +98,7 @@ class _VideoListItemState extends State<VideoListItem> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           radius: 30,
                           backgroundImage: NetworkImage(
                               'https://www.horror.land/wp-content/gallery/teal-and-orange/Jumper-2008-Poster-V1.jpg'),

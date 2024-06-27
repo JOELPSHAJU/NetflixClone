@@ -3,7 +3,7 @@ import 'package:netflix/application/controller/upcoming/upcomings.dart';
 import 'package:netflix/application/models/upcoming/upcoming.dart';
 import 'package:netflix/core/colors/constants.dart';
 import 'package:netflix/presentation/homePage/widget/main_card_widget.dart';
-import 'package:netflix/presentation/search/widget.dart';
+
 
 class SearchResultWidget extends StatefulWidget {
   const SearchResultWidget({super.key});

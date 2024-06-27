@@ -5,9 +5,9 @@ import 'package:netflix/core/colors/constants.dart';
 import 'package:netflix/presentation/homePage/widget/custom_card.dart';
 
 class NumberTitleCard extends StatelessWidget {
- const NumberTitleCard({super.key, required this.upcoming});
+  const NumberTitleCard({super.key, required this.upcoming});
 
- final List<Upcoming> upcoming;
+  final List<Upcoming> upcoming;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class NumberTitleCard extends StatelessWidget {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: List.generate(
-              upcoming.length,
+              10,
               (index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: MainCardCustom(

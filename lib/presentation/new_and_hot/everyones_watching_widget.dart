@@ -19,9 +19,16 @@ class EveryonesWatchingWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             width,
-            Text(
-              upcoming.title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * .9,
+              child: Text(
+                upcoming.title,
+                maxLines: 1,
+                style: const TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              ),
             ),
           ],
         ),

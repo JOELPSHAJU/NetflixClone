@@ -10,7 +10,7 @@ import 'package:netflix/application/models/top_rated/top_rated.dart';
 import 'package:netflix/application/models/upcoming/upcoming.dart';
 import 'package:netflix/core/colors/constants.dart';
 import 'package:netflix/presentation/homePage/main_title.dart';
-import 'package:netflix/presentation/homePage/widget/custom_card.dart';
+
 import 'package:netflix/presentation/homePage/widget/main_tile.dart';
 import 'package:netflix/presentation/homePage/widget/number_card.dart';
 
@@ -160,8 +160,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 ),
                                 width,
                                 Container(
-                                  width: 40,
-                                  height: 30,
+                                  width: 35,
+                                  height: 25,
                                   decoration: const BoxDecoration(
                                       image: DecorationImage(
                                           image: AssetImage(

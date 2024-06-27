@@ -4,6 +4,7 @@ import 'package:netflix/application/models/popular/popular.dart';
 import 'package:netflix/core/colors/constants.dart';
 import 'package:netflix/presentation/search/widget.dart';
 
+// ignore: must_be_immutable
 class SearchIdle extends StatelessWidget {
   SearchIdle({super.key, required this.popular});
   List<Popular> popular;

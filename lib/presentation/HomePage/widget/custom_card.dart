@@ -1,10 +1,10 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix/application/models/upcoming/upcoming.dart';
+
 import 'package:netflix/core/colors/constants.dart';
 
 class MainCardCustom extends StatelessWidget {
-  MainCardCustom({Key? key, required this.image, required this.index})
+  const MainCardCustom({Key? key, required this.image, required this.index})
       : super(key: key);
 
   final int index;
